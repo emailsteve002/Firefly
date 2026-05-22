@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Firefly Promo Tile (440x280)</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #2a2f36;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
+      gap: 20px;
+    }
+
+    /* ===== The actual 440x280 tile ===== */
+    .tile {
+      width: 440px;
+      height: 280px;
+      background: linear-gradient(135deg, #1976d2 0%, #1565c0 55%, #0d47a1 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      border-radius: 4px;
+    }
+
+    /* Decorative glow */
+    .tile::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 235, 59, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    .tile-inner {
+      position: relative;
+      padding: 26px 28px;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sparkle {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .brand {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .tagline {
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.92;
+      margin-top: 8px;
+      max-width: 280px;
+      line-height: 1.35;
+    }
+
+    /* Demo text block showing highlighting in action */
+    .demo {
+      background: rgba(255, 255, 255, 0.97);
+      color: #1c1c1c;
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      max-width: 100%;
+    }
+    .demo mark {
+      padding: 0 3px;
+      border-radius: 2px;
+      font-weight: 700;
+      color: #1c1c1c;
+    }
+    .hl-yellow { background: #ffeb3b; }
+    .hl-cyan   { background: #4dd0e1; }
+    .hl-pink   { background: #f48fb1; }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      opacity: 0.92;
+    }
+    .badge {
+      background: #ffb300;
+      color: #4a2c00;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      letter-spacing: 0.6px;
+    }
+
+    /* ===== Capture instructions ===== */
+    .instructions {
+      max-width: 440px;
+      color: #cdd5dd;
+      font-size: 13px;
+      line-height: 1.55;
+      background: #1e242b;
+      border: 1px solid #3a424c;
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .instructions h3 {
+      margin: 0 0 8px;
+      color: #ffd54f;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .instructions code {
+      background: #2d343d;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+    .instructions ol { padding-left: 18px; margin: 6px 0; }
+    .instructions li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="tile" id="tile">
+    <div class="tile-inner">
+      <div>
+        <div class="top-row">
+          <span class="sparkle">&#10024;</span>
+          <span class="brand">Firefly</span>
+        </div>
+        <div class="tagline">Spot the words that matter on every page you open.</div>
+      </div>
+
+      <div class="demo">
+        <mark class="hl-yellow">Elephants</mark> have astonishing <mark class="hl-cyan">memory</mark>, recognizing old friends and waterholes across decades. Their tight-knit <mark class="hl-pink">herd</mark> is led by an experienced matriarch who guides the group.
+      </div>
+
+      <div class="footer-row">
+        <span>Chrome Extension</span>
+        <span class="badge">Free</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h3>How to capture this at exactly 440&times;280</h3>
+    <ol>
+      <li>Press <code>Cmd&nbsp;+&nbsp;Shift&nbsp;+&nbsp;4</code>, then tap <code>Space</code>.</li>
+      <li>Click the blue tile above. macOS saves the screenshot to your Desktop.</li>
+      <li>On a Retina display the capture will be <b>880&times;560</b> &mdash; open it in Preview, <b>Tools &rarr; Adjust Size</b>, set width to <b>440</b>, leave "Scale proportionally" on, save as PNG.</li>
+    </ol>
+    <h3 style="margin-top:12px">Alternative: pixel-perfect via DevTools</h3>
+    <ol>
+      <li>Open this page in Chrome, press <code>F12</code> to open DevTools.</li>
+      <li>Right-click the tile in the Elements panel &rarr; <b>Capture node screenshot</b>.</li>
+      <li>You get exact <b>440&times;280</b> PNG with no resizing needed.</li>
+    </ol>
+  </div>
+
+</body>
+</html>

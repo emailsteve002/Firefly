@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Firefly &mdash; Keyword Highlighter for Chrome</title>
+  <meta name="description" content="Firefly automatically highlights your keywords on every webpage you visit. Free Chrome extension." />
+  <style>
+    :root {
+      --blue: #1976d2;
+      --blue-dark: #1565c0;
+      --accent: #ffb300;
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --text: #1c1c1c;
+      --muted: #5b6470;
+      --border: #e3e8ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(to right, var(--blue), var(--blue-dark));
+      color: white;
+      padding: 56px 32px 80px;
+      text-align: center;
+    }
+    header img.logo {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 14px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 700;
+    }
+    header .tagline {
+      opacity: 0.95;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    .cta-row {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: transform 0.05s ease, box-shadow 0.15s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: white;
+      color: var(--blue-dark);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .btn-donate {
+      background: var(--accent);
+      color: #4a2c00;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .btn-donate:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    main {
+      max-width: 760px;
+      margin: -40px auto 40px;
+      padding: 0 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    h2 {
+      color: var(--blue-dark);
+      font-size: 19px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    h3 {
+      font-size: 14px;
+      color: var(--blue);
+      margin-top: 16px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    ul, ol { padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    code {
+      background: #eef2f7;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .feature {
+      padding: 12px 14px;
+      background: #f8fbfe;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .feature b { color: var(--blue-dark); }
+    .donate-box {
+      background: linear-gradient(to bottom right, #fff9e6, #fff3cc);
+      border: 1px solid #f0d97a;
+      border-radius: 8px;
+      padding: 22px 26px;
+      text-align: center;
+    }
+    .donate-box h2 { color: #8a5a00; }
+    .donate-box p { color: #4a2c00; margin: 8px 0 18px; }
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #8a5a00;
+    }
+    .price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: #6a4400;
+    }
+    .donate-links {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 20px 0 40px;
+    }
+    footer a { color: var(--muted); }
+    .muted { color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="img/firefly_128px.png" alt="Firefly logo" />
+    <h1>&#10024; Firefly</h1>
+    <div class="tagline">Automatically highlight your keywords on every webpage.</div>
+    <div class="cta-row">
+      <!-- Replace with your Chrome Web Store URL once the listing is live -->
+      <a class="btn btn-primary" href="https://chromewebstore.google.com/" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+      <a class="btn btn-donate" href="#support">Support for $0.99</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>What it does</h2>
+      <div class="feature-grid">
+        <div class="feature"><b>Auto-highlight</b><br/>Marks your keywords on every page you open.</div>
+        <div class="feature"><b>Per-keyword color</b><br/>Pick any color, or bold-only.</div>
+        <div class="feature"><b>Synced</b><br/>Keywords follow you across devices via Chrome sync.</div>
+        <div class="feature"><b>Dynamic pages</b><br/>Works on infinite scroll and single-page apps.</div>
+      </div>
+    </section>
+
+    <section class="card" id="support">
+      <div class="donate-box">
+        <h2>Enjoying Firefly? Support development</h2>
+        <p>Firefly is free. If it saves you time, a one-time $0.99 helps keep it maintained.</p>
+        <div class="price">$0.99 <small>one-time</small></div>
+        <div class="donate-links">
+          <!-- Replace YOUR_HANDLE with your Buy Me a Coffee username -->
+          <a class="btn btn-donate" href="https://www.buymeacoffee.com/YOUR_HANDLE" target="_blank" rel="noopener">Buy me a coffee</a>
+          <!-- Replace with your Stripe Payment Link (https://buy.stripe.com/...) -->
+          <a class="btn btn-donate" href="https://buy.stripe.com/YOUR_LINK" target="_blank" rel="noopener">Pay with card</a>
+          <!-- Optional: replace with your PayPal.me link -->
+          <a class="btn btn-donate" href="https://paypal.me/YOUR_HANDLE/0.99" target="_blank" rel="noopener">PayPal</a>
+        </div>
+        <p class="muted" style="margin-top:14px">All features remain free regardless. Donations are not tax-deductible.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Install</h2>
+      <ol>
+        <li>Click <b>Add to Chrome</b> above.</li>
+        <li>Pin the Firefly icon in your toolbar for quick access.</li>
+        <li>Click the icon, type one keyword per line, hit <b>Add Keywords</b>.</li>
+      </ol>
+    </section>
+
+    <section class="card" id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Last updated: May 22, 2026</p>
+
+      <h3>What we collect</h3>
+      <p><b>Nothing.</b> Firefly does not collect, transmit, or sell any personal data. There are no analytics, no trackers, and no remote servers.</p>
+
+      <h3>What is stored locally</h3>
+      <ul>
+        <li>Your keyword list and per-keyword styling (color, bold).</li>
+        <li>The on/off toggle state.</li>
+      </ul>
+      <p>This data is saved using the Chrome <code>storage</code> API. If you are signed in to Chrome with sync enabled, Chrome may sync this data across your devices &mdash; this is handled entirely by Google, not by Firefly.</p>
+
+      <h3>Permissions, explained</h3>
+      <ul>
+        <li><b>storage</b> &mdash; to save your keyword list.</li>
+        <li><b>tabs</b> &mdash; to refresh highlighting when you switch tabs or toggle Firefly on/off.</li>
+        <li><b>host access to all URLs</b> &mdash; required so the content script can highlight keywords on whichever page you visit. The script runs locally in your browser; nothing is sent anywhere.</li>
+      </ul>
+
+      <h3>Third parties</h3>
+      <p>Firefly does not use any third-party services, SDKs, or remote code. Donation links on this page lead to Buy Me a Coffee, Stripe, or PayPal; their respective privacy policies apply if you choose to use them.</p>
+
+      <h3>Contact</h3>
+      <p>Questions or requests can be submitted through the Chrome Web Store listing's support tab.</p>
+    </section>
+  </main>
+
+  <footer>
+    Firefly &middot; Made for finding what matters fast. &middot;
+    <a href="#privacy">Privacy</a> &middot;
+    <a href="#support">Support</a>
+  </footer>
+</body>
+</html>

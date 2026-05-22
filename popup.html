@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --blue: #1976d2;
+      --blue-dark: #1565c0;
+      --red: #d32f2f;
+      --red-dark: #9a0007;
+      --green: #2e7d32;
+      --bg: #ffffff;
+      --muted: #6b6b6b;
+      --row-hover: #f5f7fa;
+      --border: #e0e0e0;
+      --border-strong: #c4c4c4;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: #222;
+      background: var(--bg);
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 360px;
+      transition: width 0.25s ease;
+      overflow: hidden;
+    }
+    .wrapper.expanded {
+      width: 520px;
+    }
+
+    .main {
+      width: 360px;
+      flex: 0 0 360px;
+    }
+
+    .header {
+      background: linear-gradient(to right, var(--blue), var(--blue-dark));
+      color: white;
+      padding: 12px 14px;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .input-section {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    textarea#keywords {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      padding: 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    .input-row label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    input[type="color"] {
+      width: 36px;
+      height: 26px;
+      border: 1px solid var(--border-strong);
+      border-radius: 3px;
+      padding: 0;
+      cursor: pointer;
+      background: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 9px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      transition: background 0.15s ease;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    .list-section {
+      padding: 10px 14px 14px 14px;
+    }
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .list-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+    }
+    .list-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-compact {
+      font-size: 11px;
+      padding: 3px 8px;
+      border: 1px solid var(--border-strong);
+      background: #fafafa;
+      border-radius: 3px;
+      color: #333;
+    }
+    .btn-compact:hover { background: #efefef; }
+
+    .btn-toggle.on { color: var(--green); font-weight: 600; }
+    .btn-toggle.off { color: var(--red); font-weight: 600; }
+
+    .keyword-list {
+      max-height: 260px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .keyword-list:empty + .empty-state {
+      display: block;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 16px 8px;
+    }
+
+    .kw-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .kw-item:last-child { border-bottom: none; }
+    .kw-item:hover { background: var(--row-hover); }
+
+    .kw-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 1px solid var(--border-strong);
+      flex: 0 0 16px;
+    }
+    .kw-swatch.no-color {
+      background: #fff !important;
+      border: 1px dashed #999;
+    }
+
+    .kw-bold {
+      width: 24px;
+      height: 24px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 700;
+      font-size: 12px;
+      border: 1px solid var(--border-strong);
+      background: #f0f0f0;
+      color: #333;
+      border-radius: 3px;
+      padding: 0;
+    }
+    .kw-bold.active {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue-dark);
+    }
+
+    .kw-text {
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .kw-delete {
+      color: var(--red);
+      background: none;
+      border: none;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .kw-delete:hover { color: var(--red-dark); background: rgba(211,47,47,0.08); }
+
+    /* Side panel */
+    .side-panel {
+      width: 160px;
+      flex: 0 0 160px;
+      border-left: 1px solid var(--border);
+      background: #fafafa;
+      padding: 12px;
+      box-sizing: border-box;
+      display: none;
+    }
+    .wrapper.expanded .side-panel {
+      display: block;
+    }
+
+    .side-panel button {
+      width: 100%;
+      padding: 7px;
+      border-radius: 4px;
+      font-size: 12px;
+      border: none;
+      margin-bottom: 6px;
+    }
+    .side-panel .btn-apply {
+      background: var(--blue);
+      color: white;
+      font-weight: 600;
+    }
+    .side-panel .btn-apply:hover { background: var(--blue-dark); }
+    .side-panel .btn-close {
+      background: #e0e0e0;
+      color: #444;
+    }
+    .side-panel .btn-close:hover { background: #d0d0d0; }
+
+    .side-panel label.heading {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin: 10px 0 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .side-panel input[type="color"].full {
+      width: 100%;
+      height: 44px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #333;
+    }
+
+    .guide-link {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      color: var(--blue);
+      text-decoration: none;
+      margin-top: 8px;
+    }
+    .guide-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrapper" id="wrapper">
+    <div class="main">
+      <div class="header">
+        <span>&#10024;</span>
+        <span>Firefly &mdash; Keyword Highlighter</span>
+      </div>
+
+      <div class="input-section">
+        <textarea id="keywords" rows="5" placeholder="One keyword per line"></textarea>
+        <div class="input-row">
+          <label for="newColor">Color:</label>
+          <input type="color" id="newColor" value="#ffeb3b" />
+        </div>
+        <button id="addBtn" class="btn-primary">Add Keywords</button>
+      </div>
+
+      <div class="list-section">
+        <div class="list-header">
+          <div class="list-title" id="listTitle">Keywords (0)</div>
+          <div class="list-actions">
+            <button id="toggleBtn" class="btn-compact btn-toggle on">On</button>
+            <button id="clearBtn" class="btn-compact">Clear all</button>
+          </div>
+        </div>
+        <div class="keyword-list" id="keywordList"></div>
+        <div class="empty-state" id="emptyState">No keywords yet.</div>
+        <a href="guide.html" target="_blank" class="guide-link">View usage guide</a>
+      </div>
+    </div>
+
+    <div class="side-panel" id="sidePanel">
+      <button id="panelApply" class="btn-apply">Apply</button>
+      <button id="panelClose" class="btn-close">&#10005; Close</button>
+      <label class="heading">Highlight color</label>
+      <input type="color" id="panelColor" class="full" value="#ffeb3b" />
+      <div class="check-row">
+        <input type="checkbox" id="panelNoHighlight" />
+        <label for="panelNoHighlight">No highlight</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

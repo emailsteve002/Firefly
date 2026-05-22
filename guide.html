@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Firefly &mdash; Usage Guide</title>
+  <style>
+    :root {
+      --blue: #1976d2;
+      --blue-dark: #1565c0;
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --text: #1c1c1c;
+      --muted: #5b6470;
+      --border: #e3e8ee;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(to right, var(--blue), var(--blue-dark));
+      color: white;
+      padding: 28px 32px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+    header .sub {
+      opacity: 0.92;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    main {
+      max-width: 760px;
+      margin: -20px auto 40px;
+      padding: 0 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    h2 {
+      color: var(--blue-dark);
+      font-size: 17px;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    h3 {
+      font-size: 14px;
+      color: var(--blue);
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+    ol, ul {
+      padding-left: 22px;
+    }
+    li { margin-bottom: 6px; }
+    code, kbd {
+      background: #eef2f7;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+    }
+    .tip {
+      border-left: 3px solid var(--blue);
+      background: #eef5fc;
+      padding: 10px 14px;
+      border-radius: 0 4px 4px 0;
+      margin: 10px 0;
+      font-size: 13.5px;
+      color: #20405e;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 20px 0 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>&#10024; Firefly &mdash; Keyword Highlighter</h1>
+    <div class="sub">Automatically mark your keywords on every webpage you visit.</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Installation</h2>
+      <ol>
+        <li>Open Chrome and visit <code>chrome://extensions</code>.</li>
+        <li>Toggle <b>Developer mode</b> on (top-right corner).</li>
+        <li>Click <b>Load unpacked</b> and select the Firefly folder.</li>
+        <li>Firefly's icon appears in your toolbar. Pin it for quick access.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Adding Keywords</h2>
+      <ol>
+        <li>Click the Firefly icon in your toolbar.</li>
+        <li>Type one keyword per line in the textarea.</li>
+        <li>Pick a default color with the <b>Color</b> picker (optional &mdash; defaults to yellow).</li>
+        <li>Click <b>Add Keywords</b>. Duplicates are skipped automatically.</li>
+      </ol>
+      <div class="tip">Keywords are stored in Chrome sync storage, so they follow you across devices signed in to the same Chrome profile.</div>
+    </section>
+
+    <section class="card">
+      <h2>Per-Keyword Styling</h2>
+      <h3>Bold <span class="pill">B</span></h3>
+      <p>Each keyword has a small <b>B</b> button. Click it to toggle whether matches are bolded. Active = blue, inactive = gray.</p>
+
+      <h3>Color and Highlight</h3>
+      <p>Click the small colored swatch next to a keyword to open the color side panel. The popup expands to show:</p>
+      <ul>
+        <li><b>Highlight color</b> &mdash; pick any color.</li>
+        <li><b>No highlight</b> checkbox &mdash; disables the background highlight (useful if you only want the keyword bolded).</li>
+      </ul>
+      <p>Press <b>Apply</b> to save, or <b>&#10005; Close</b> to discard.</p>
+    </section>
+
+    <section class="card">
+      <h2>On / Off Toggle</h2>
+      <p>The <b>On</b> / <b>Off</b> button at the top of the list hides or restores all highlights everywhere without erasing your keyword list. Useful when a page becomes too visually busy.</p>
+    </section>
+
+    <section class="card">
+      <h2>Dynamic Pages</h2>
+      <p>Firefly watches the page for new content as it loads (infinite scroll, single-page apps, async-rendered widgets). New text that matches your keywords is highlighted automatically after a brief delay.</p>
+      <div class="tip">If a site never seems to highlight anything, it may put text inside <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> elements, which Firefly intentionally skips to avoid breaking form fields.</div>
+    </section>
+
+    <section class="card">
+      <h2>Clearing Everything</h2>
+      <p>Press <b>Clear all</b> in the popup to remove every keyword. The action is immediate and applies to all open tabs.</p>
+    </section>
+  </main>
+
+  <footer>Firefly &middot; Made for finding what matters fast.</footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Firefly",
+  "version": "1.0.0",
+  "description": "Automatically mark your keywords",
+  "icons": {
+    "48": "img/firefly_48px.png",
+    "128": "img/firefly_128px.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Firefly",
+    "default_icon": {
+      "48": "img/firefly_48px.png",
+      "128": "img/firefly_128px.png"
+    }
+  },
+  "permissions": ["storage", "tabs"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/firefly.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

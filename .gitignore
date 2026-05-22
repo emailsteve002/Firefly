@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Local dev guide (contains absolute paths to local machine)
+publishing-guide.html
+
+# Raw and intermediate screenshots (uploaded to Web Store directly)
+Firefly screenshot.png
+Firefly working Screenshot.png
+firefly-screenshot-*.png
+
+# Build artifacts
+*.zip
