@@ -4,6 +4,9 @@
 # Local dev guide (contains absolute paths to local machine)
 publishing-guide.html
 
+# Local-only project state notes
+PROJECT_STATE.md
+
 # Raw and intermediate screenshots (uploaded to Web Store directly)
 Firefly screenshot.png
 Firefly working Screenshot.png
