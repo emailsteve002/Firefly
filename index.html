@@ -9,7 +9,6 @@
     :root {
       --blue: #1976d2;
       --blue-dark: #1565c0;
-      --accent: #ffb300;
       --bg: #f5f8fb;
       --card: #ffffff;
       --text: #1c1c1c;
@@ -68,12 +67,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     .btn-primary:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .btn-donate {
-      background: var(--accent);
-      color: #4a2c00;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    .btn-donate:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     main {
       max-width: 760px;
       margin: -40px auto 40px;
@@ -124,32 +117,6 @@
       font-size: 14px;
     }
     .feature b { color: var(--blue-dark); }
-    .donate-box {
-      background: linear-gradient(to bottom right, #fff9e6, #fff3cc);
-      border: 1px solid #f0d97a;
-      border-radius: 8px;
-      padding: 22px 26px;
-      text-align: center;
-    }
-    .donate-box h2 { color: #8a5a00; }
-    .donate-box p { color: #4a2c00; margin: 8px 0 18px; }
-    .price {
-      font-size: 28px;
-      font-weight: 700;
-      color: #8a5a00;
-    }
-    .price small {
-      font-size: 14px;
-      font-weight: 500;
-      color: #6a4400;
-    }
-    .donate-links {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
     footer {
       text-align: center;
       color: var(--muted);
@@ -168,7 +135,6 @@
     <div class="cta-row">
       <!-- Replace with your Chrome Web Store URL once the listing is live -->
       <a class="btn btn-primary" href="https://chromewebstore.google.com/" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
-      <a class="btn btn-donate" href="#support">Support for $0.99</a>
     </div>
   </header>
 
@@ -180,23 +146,6 @@
         <div class="feature"><b>Per-keyword color</b><br/>Pick any color, or bold-only.</div>
         <div class="feature"><b>Synced</b><br/>Keywords follow you across devices via Chrome sync.</div>
         <div class="feature"><b>Dynamic pages</b><br/>Works on infinite scroll and single-page apps.</div>
-      </div>
-    </section>
-
-    <section class="card" id="support">
-      <div class="donate-box">
-        <h2>Enjoying Firefly? Support development</h2>
-        <p>Firefly is free. If it saves you time, a one-time $0.99 helps keep it maintained.</p>
-        <div class="price">$0.99 <small>one-time</small></div>
-        <div class="donate-links">
-          <!-- Replace YOUR_HANDLE with your Buy Me a Coffee username -->
-          <a class="btn btn-donate" href="https://www.buymeacoffee.com/YOUR_HANDLE" target="_blank" rel="noopener">Buy me a coffee</a>
-          <!-- Replace with your Stripe Payment Link (https://buy.stripe.com/...) -->
-          <a class="btn btn-donate" href="https://buy.stripe.com/YOUR_LINK" target="_blank" rel="noopener">Pay with card</a>
-          <!-- Optional: replace with your PayPal.me link -->
-          <a class="btn btn-donate" href="https://paypal.me/YOUR_HANDLE/0.99" target="_blank" rel="noopener">PayPal</a>
-        </div>
-        <p class="muted" style="margin-top:14px">All features remain free regardless. Donations are not tax-deductible.</p>
       </div>
     </section>
 
@@ -231,7 +180,7 @@
       </ul>
 
       <h3>Third parties</h3>
-      <p>Firefly does not use any third-party services, SDKs, or remote code. Donation links on this page lead to Buy Me a Coffee, Stripe, or PayPal; their respective privacy policies apply if you choose to use them.</p>
+      <p>Firefly does not use any third-party services, SDKs, or remote code.</p>
 
       <h3>Contact</h3>
       <p>Questions or requests can be submitted through the Chrome Web Store listing's support tab.</p>
@@ -240,8 +189,7 @@
 
   <footer>
     Firefly &middot; Made for finding what matters fast. &middot;
-    <a href="#privacy">Privacy</a> &middot;
-    <a href="#support">Support</a>
+    <a href="#privacy">Privacy</a>
   </footer>
 </body>
 </html>
